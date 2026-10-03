@@ -2,7 +2,7 @@
 
 A lightweight Firefox extension that hides your mouse cursor and disables click/hover triggers across all tabs, while letting you use mouse buttons or hotkeys to switch tabs.
 
-Useful when you want to use mouse buttons without accidentally clicking, highlighting text, or triggering hover menus on web pages.
+Useful when you want to hide your cursor and not trigger hover menus on web pages.
 
 ---
 
@@ -25,27 +25,9 @@ Useful when you want to use mouse buttons without accidentally clicking, highlig
 | **Next Tab** | `Mouse 5` | Switch to the next tab |
 
 *Note on Mouse 4 & 5 on Windows:* If Firefox intercepts your side buttons for browser Back/Forward:
-- Map them in [X-Mouse Button Control (XMBC)](https://www.highrez.co.uk/downloads/xmousebuttoncontrol.htm) for `firefox.exe` to `{F13}` / `{F14}` / `{F15}` (keeps Razer Synapse / in-game binds completely untouched).
+- Map them in [X-Mouse Button Control (XMBC)](https://www.highrez.co.uk/downloads/xmousebuttoncontrol.htm) for `firefox.exe` to `{F13}` / `{F14}` / `{F15}`
 - Or open `about:config` in Firefox and set `mousebutton.4th.enabled` and `mousebutton.5th.enabled` to `false`.
-- Or just use keyboard shortcuts (like `Alt Nav` preset in settings).
-
----
-
-## Installation
-
-### Temporary (Testing)
-1. In Firefox, go to `about:debugging#/runtime/this-firefox`.
-2. Click **Load Temporary Add-on...**
-3. Select `manifest.json` in this folder.
-
-### Permanent (Free & Private via Mozilla)
-Standard Firefox unloads temporary extensions on restart. To make it permanent:
-1. Go to [addons.mozilla.org/developers](https://addons.mozilla.org/developers/) and log in.
-2. Click **Submit a New Add-on** -> select **"On your own"** (unlisted/private).
-3. Upload `hdcursor-v1.0.0.zip` (generate anytime via `python scripts/package.py`).
-4. Wait 2–3 minutes for automated review, then download your signed `.xpi` file and open it in Firefox.
-
----
+- Or just use keyboard shortcuts.
 
 ## License
 
