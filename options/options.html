@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HDCursor - Settings</title>
+  <link rel="stylesheet" href="options.css?v=7">
+</head>
+
+<body>
+  <div class="layout-wrapper">
+    <!-- Navigation / Topbar -->
+    <header class="topbar">
+      <div class="topbar-brand">
+        <div class="brand-badge">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#99F4D1" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <circle cx="12" cy="11" r="3" stroke="#CCFFFF" />
+          </svg>
+        </div>
+        <div class="brand-titles">
+          <div class="brand-name-row">
+            <h1>HDCursor</h1>
+          </div>
+          <span class="brand-tag">Phantom Cursor &amp; Navigation Controller</span>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <div class="status-pill" id="global-status-pill">
+          <span class="status-dot" id="topbar-status-dot"></span>
+          <span id="topbar-status-text">HD STANDBY</span>
+        </div>
+        <button id="btn-reset-defaults" class="btn btn-outline" title="Reset all settings to default">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10" />
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+          </svg>
+          <span>Reset Defaults</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="content-container">
+
+      <!-- Toast Container -->
+      <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+      <!-- Core Controls Grid -->
+      <section class="config-section">
+        <div class="controls-grid">
+          <!-- Card 1: HD Master -->
+          <div class="control-card" id="card-master-shield">
+            <div class="control-header">
+              <div class="control-icon-wrap shield-glow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#99F4D1" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div class="control-meta">
+                <div class="control-title-row">
+                  <h3>HD</h3>
+                  <span class="badge-status" id="badge-shield-state">Standby</span>
+                </div>
+                <span class="control-subtext">Toggle cursor &amp; click trap</span>
+              </div>
+            </div>
+            <div class="control-switch-wrap">
+              <label class="switch" for="toggle-master-shield">
+                <input type="checkbox" id="toggle-master-shield">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Card 2: Pointer Lock -->
+          <div class="control-card" id="card-pointer-lock">
+            <div class="control-header">
+              <div class="control-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CCFFFF" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="22" y1="12" x2="18" y2="12" />
+                  <line x1="6" y1="12" x2="2" y2="12" />
+                  <line x1="12" y1="6" x2="12" y2="2" />
+                  <line x1="12" y1="22" x2="12" y2="18" />
+                </svg>
+              </div>
+              <div class="control-meta">
+                <div class="control-title-row">
+                  <h3>Pointer Lock</h3>
+                  <span class="badge-tag">W3C API</span>
+                </div>
+                <span class="control-subtext">Hardware viewport trap</span>
+              </div>
+            </div>
+            <div class="control-switch-wrap">
+              <label class="switch" for="toggle-pointer-lock">
+                <input type="checkbox" id="toggle-pointer-lock">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Card 3: Wheel Scroll -->
+          <div class="control-card" id="card-wheel-scroll">
+            <div class="control-header">
+              <div class="control-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#99F4D1" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="2" width="12" height="20" rx="6" />
+                  <line x1="12" y1="6" x2="12" y2="10" />
+                </svg>
+              </div>
+              <div class="control-meta">
+                <div class="control-title-row">
+                  <h3>Wheel Scroll</h3>
+                  <span class="badge-tag">Scroll</span>
+                </div>
+                <span class="control-subtext">Document scroll passthrough</span>
+              </div>
+            </div>
+            <div class="control-switch-wrap">
+              <label class="switch" for="toggle-wheel-scroll">
+                <input type="checkbox" id="toggle-wheel-scroll">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Hotkey & Mouse Action Dispatcher -->
+      <section class="config-section">
+        <div class="section-bar">
+          <div class="section-title-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#99F4D1" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
+              <line x1="6" y1="8" x2="6.01" y2="8" />
+              <line x1="10" y1="8" x2="10.01" y2="8" />
+              <line x1="14" y1="8" x2="14.01" y2="8" />
+              <line x1="18" y1="8" x2="18.01" y2="8" />
+              <line x1="8" y1="12" x2="8.01" y2="12" />
+              <line x1="12" y1="12" x2="12.01" y2="12" />
+              <line x1="16" y1="12" x2="16.01" y2="12" />
+              <line x1="7" y1="16" x2="17" y2="16" />
+            </svg>
+            <h2>Action Keybinds</h2>
+          </div>
+
+          <!-- Quick Presets Bar -->
+          <div class="presets-toolbar">
+            <span class="presets-label">Quick Presets:</span>
+            <div class="preset-buttons">
+              <button class="btn-preset" data-preset="default" title="Shift+Mouse4, Mouse4, Mouse5">Mouse 4 &amp; 5</button>
+              <button class="btn-preset" data-preset="xmbc" title="F15, F13, F14">XMBC (F13-F15)</button>
+              <button class="btn-preset" data-preset="alt" title="Alt+C, Alt+Z, Alt+X">Alt Nav</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions-table-container">
+          <table class="actions-table" id="actions-table">
+            <thead>
+              <tr>
+                <th style="width: 38%;">Action</th>
+                <th style="width: 42%;">Assigned Trigger</th>
+                <th style="width: 20%; text-align: right;">Customize</th>
+              </tr>
+            </thead>
+            <tbody id="actions-table-body">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section: Input Recorder Modal / Inline Panel -->
+      <div id="recorder-card" class="recorder-card hidden">
+        <div class="recorder-header">
+          <div class="recorder-title-row">
+            <div class="pulse-indicator"></div>
+            <h3 id="recorder-action-title">Recording Input</h3>
+          </div>
+          <button id="btn-cancel-recording" class="icon-btn-plain" title="Cancel">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="recorder-pad" id="recorder-pad" tabindex="0">
+          <div class="recorder-instruction">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#99F4D1" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polygon points="12 8 8 12 12 16 12 8" />
+            </svg>
+            <span id="recorder-status-text">Press any key or mouse button combination...</span>
+            <small>Supports Shift, Ctrl, Alt, Meta + Keys or Mouse Buttons 1–5</small>
+          </div>
+
+          <div class="recorder-display" id="recorder-display">
+            <span class="preview-badge" id="recorder-preview-badge">Waiting...</span>
+          </div>
+
+          <div id="recorder-validation-error" class="validation-error-msg hidden"></div>
+        </div>
+
+        <div class="recorder-footer">
+          <button id="btn-save-recording" class="btn btn-primary" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <span>Save Binding</span>
+          </button>
+          <button id="btn-discard-recording" class="btn btn-secondary">
+            <span>Cancel (Esc)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Section: Input Verification Sandbox -->
+      <section class="config-section">
+        <div class="section-bar">
+          <div class="section-title-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#99F4D1" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+            <h2>Live Input Sandbox</h2>
+          </div>
+          <button id="btn-clear-sandbox" class="btn-clear" title="Clear log entries">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg>
+            <span>Clear Log</span>
+          </button>
+        </div>
+
+        <div class="sandbox-container" id="sandbox-container" tabindex="0">
+          <div class="sandbox-prompt">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CCFFFF" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
+              <line x1="6" y1="8" x2="6.01" y2="8" />
+              <line x1="10" y1="8" x2="10.01" y2="8" />
+              <line x1="14" y1="8" x2="14.01" y2="8" />
+              <line x1="18" y1="8" x2="18.01" y2="8" />
+            </svg>
+            <span>Press keyboard keys or click mouse buttons to test triggers</span>
+          </div>
+          <div class="sandbox-log" id="sandbox-log">
+            <div class="log-entry system">[Ready] Dispatcher is active. Testing keyboard or mouse will log matched actions below.</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Confirmation Modal for Reset -->
+    <div id="modal-reset" class="modal-backdrop hidden">
+      <div class="modal-dialog">
+        <div class="modal-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+        </div>
+        <div class="modal-body">
+          <h3>Reset to Default Configuration?</h3>
+          <p>This will restore the original keybinds and reset all toggles. This action cannot be undone.</p>
+        </div>
+        <div class="modal-actions">
+          <button id="btn-confirm-reset" class="btn btn-danger">Confirm Reset</button>
+          <button id="btn-cancel-reset" class="btn btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../shared/defaults.js?v=5"></script>
+  <script src="../shared/storage.js?v=5"></script>
+  <script src="options.js?v=5"></script>
+</body>
+
+</html>

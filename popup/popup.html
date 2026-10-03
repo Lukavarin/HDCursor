@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HDCursor Controller</title>
+  <link rel="stylesheet" href="popup.css?v=5">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#99F4D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <circle cx="12" cy="11" r="3" stroke="#CCFFFF"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">HDCursor</span>
+          <span class="brand-subtitle">Phantom Controller</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-open-options" class="icon-btn" title="Open Settings" aria-label="Settings">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A1A1AA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Master HD Card -->
+    <div class="card hero-card" id="hero-card">
+      <div class="hero-content">
+        <div class="hero-status-row">
+          <span class="status-indicator-dot" id="status-dot"></span>
+          <span class="status-text" id="status-label">HD STANDBY</span>
+        </div>
+        <span class="hero-subtext" id="status-desc">Cursor visible</span>
+      </div>
+      <label class="switch" for="toggle-shield-master">
+        <input type="checkbox" id="toggle-shield-master">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Quick Features -->
+    <div class="section-title">PREFERENCES</div>
+
+    <div class="pref-grid">
+      <div class="card pref-card">
+        <span class="pref-title">Pointer Lock</span>
+        <label class="switch switch-sm" for="toggle-pointer-lock">
+          <input type="checkbox" id="toggle-pointer-lock">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="card pref-card">
+        <span class="pref-title">Wheel Scroll</span>
+        <label class="switch switch-sm" for="toggle-wheel-scroll">
+          <input type="checkbox" id="toggle-wheel-scroll">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Active Shortcuts Card -->
+    <div class="section-title">ACTIVE BINDINGS</div>
+
+    <div class="card shortcuts-card">
+      <div class="shortcut-row">
+        <div class="shortcut-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#99F4D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Toggle HD</span>
+        </div>
+        <span class="key-badge" id="badge-toggle-cursor">Shift + Mouse 4</span>
+      </div>
+
+      <div class="shortcut-row">
+        <div class="shortcut-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#CCFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          <span>Prev Tab</span>
+        </div>
+        <span class="key-badge" id="badge-prev-tab">Mouse 4</span>
+      </div>
+
+      <div class="shortcut-row">
+        <div class="shortcut-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#CCFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+          <span>Next Tab</span>
+        </div>
+        <span class="key-badge" id="badge-next-tab">Mouse 5</span>
+      </div>
+    </div>
+
+    <!-- Footer Action -->
+    <footer class="popup-footer">
+      <button id="btn-configure" class="btn btn-secondary">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2" ry="2"/>
+          <line x1="6" y1="8" x2="6.01" y2="8"/>
+          <line x1="10" y1="8" x2="10.01" y2="8"/>
+          <line x1="14" y1="8" x2="14.01" y2="8"/>
+        </svg>
+        <span>Customize Keybinds</span>
+      </button>
+    </footer>
+  </div>
+
+  <script src="../shared/defaults.js"></script>
+  <script src="../shared/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
