@@ -28,7 +28,3 @@ Useful when you want to hide your cursor and not trigger hover menus on web page
 - Map them in [X-Mouse Button Control (XMBC)](https://www.highrez.co.uk/downloads/xmousebuttoncontrol.htm) for `firefox.exe` to `{F13}` / `{F14}` / `{F15}`
 - Or open `about:config` in Firefox and set `mousebutton.4th.enabled` and `mousebutton.5th.enabled` to `false`.
 - Or just use keyboard shortcuts.
-
-## License
-
-MIT
