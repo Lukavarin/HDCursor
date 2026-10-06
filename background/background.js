@@ -150,6 +150,28 @@ async function setCursorState(state) {
   return { success: true, isNeutralized: newState };
 }
 
+/**
+ * Toggle audio mute state for the active tab in current window
+ */
+async function handleToggleMute(windowId) {
+  try {
+    const queryFilter = windowId ? { windowId, active: true } : { active: true, currentWindow: true };
+    const tabs = await extApi.tabs.query(queryFilter);
+    if (!tabs || tabs.length === 0) {
+      return { success: false, reason: 'No active tab found' };
+    }
+    const activeTab = tabs[0];
+    const isCurrentlyMuted = Boolean(activeTab.mutedInfo ? activeTab.mutedInfo.muted : activeTab.muted);
+    const newMuted = !isCurrentlyMuted;
+    await extApi.tabs.update(activeTab.id, { muted: newMuted });
+    console.log(`[HDCursor BG] Tab ${activeTab.id} muted state toggled to: ${newMuted}`);
+    return { success: true, muted: newMuted, tabId: activeTab.id };
+  } catch (err) {
+    console.error('[HDCursor BG] Tab mute toggle failed:', err);
+    return { success: false, error: err.message };
+  }
+}
+
 // Runtime message dispatcher
 extApi.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (!message || !message.type) return false;
@@ -174,6 +196,11 @@ extApi.runtime.onMessage.addListener((message, sender, sendResponse) => {
       case 'NAVIGATE_TAB': {
         const winId = sender.tab ? sender.tab.windowId : undefined;
         return await handleTabNavigation(message.direction, winId);
+      }
+
+      case 'TOGGLE_MUTE': {
+        const winId = sender.tab ? sender.tab.windowId : undefined;
+        return await handleToggleMute(winId);
       }
 
       case 'OPEN_OPTIONS': {

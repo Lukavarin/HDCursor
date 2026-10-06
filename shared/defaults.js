@@ -52,6 +52,20 @@ var HDCursorDefaults = (function () {
         key: null,
         displayName: 'Mouse 5'
       }
+    },
+    toggle_mute: {
+      id: 'toggle_mute',
+      title: 'Mute / Unmute Tab',
+      description: 'Toggle audio playback for the active tab (equivalent to Ctrl+M).',
+      category: 'Audio',
+      defaultBinding: {
+        modifiers: ['Ctrl'],
+        triggerType: 'keyboard',
+        triggerCode: 'KeyM',
+        button: null,
+        key: 'm',
+        displayName: 'Ctrl + M'
+      }
     }
   };
 
@@ -70,7 +84,8 @@ var HDCursorDefaults = (function () {
     bindings: {
       toggle_cursor: { ...ACTIONS.toggle_cursor.defaultBinding },
       prev_tab: { ...ACTIONS.prev_tab.defaultBinding },
-      next_tab: { ...ACTIONS.next_tab.defaultBinding }
+      next_tab: { ...ACTIONS.next_tab.defaultBinding },
+      toggle_mute: { ...ACTIONS.toggle_mute.defaultBinding }
     },
 
     // Schema version for migrations

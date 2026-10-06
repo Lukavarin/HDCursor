@@ -62,15 +62,17 @@ const PRESETS = {
     bindings: {
       toggle_cursor: { modifiers: ['Shift'], triggerType: 'mouse', triggerCode: 'Mouse4', button: 3, key: null, displayName: 'Shift + Mouse 4' },
       prev_tab: { modifiers: [], triggerType: 'mouse', triggerCode: 'Mouse4', button: 3, key: null, displayName: 'Mouse 4' },
-      next_tab: { modifiers: [], triggerType: 'mouse', triggerCode: 'Mouse5', button: 4, key: null, displayName: 'Mouse 5' }
+      next_tab: { modifiers: [], triggerType: 'mouse', triggerCode: 'Mouse5', button: 4, key: null, displayName: 'Mouse 5' },
+      toggle_mute: { modifiers: ['Ctrl'], triggerType: 'keyboard', triggerCode: 'KeyM', button: null, key: 'm', displayName: 'Ctrl + M' }
     }
   },
   xmbc: {
-    name: 'XMBC (F13–F15)',
+    name: 'XMBC (F13–F16)',
     bindings: {
       toggle_cursor: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F15', button: null, key: 'F15', displayName: 'F15' },
       prev_tab: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F13', button: null, key: 'F13', displayName: 'F13' },
-      next_tab: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F14', button: null, key: 'F14', displayName: 'F14' }
+      next_tab: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F14', button: null, key: 'F14', displayName: 'F14' },
+      toggle_mute: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F16', button: null, key: 'F16', displayName: 'F16' }
     }
   },
   alt: {
@@ -78,7 +80,8 @@ const PRESETS = {
     bindings: {
       toggle_cursor: { modifiers: ['Alt'], triggerType: 'keyboard', triggerCode: 'KeyC', button: null, key: 'c', displayName: 'Alt + C' },
       prev_tab: { modifiers: ['Alt'], triggerType: 'keyboard', triggerCode: 'KeyZ', button: null, key: 'z', displayName: 'Alt + Z' },
-      next_tab: { modifiers: ['Alt'], triggerType: 'keyboard', triggerCode: 'KeyX', button: null, key: 'x', displayName: 'Alt + X' }
+      next_tab: { modifiers: ['Alt'], triggerType: 'keyboard', triggerCode: 'KeyX', button: null, key: 'x', displayName: 'Alt + X' },
+      toggle_mute: { modifiers: ['Alt'], triggerType: 'keyboard', triggerCode: 'KeyM', button: null, key: 'm', displayName: 'Alt + M' }
     }
   }
 };

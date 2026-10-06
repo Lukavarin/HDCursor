@@ -460,6 +460,20 @@
         break;
       }
 
+      case 'toggle_mute': {
+        console.log('[HDCursor] Sending TOGGLE_MUTE to background...');
+        if (extApi && extApi.runtime) {
+          extApi.runtime.sendMessage({
+            type: 'TOGGLE_MUTE'
+          }).then(res => {
+            console.log('[HDCursor] Background response for TOGGLE_MUTE:', res);
+          }).catch(err => {
+            console.error('[HDCursor] Tab mute message error:', err);
+          });
+        }
+        break;
+      }
+
       default:
         console.warn('[HDCursor] Unhandled action ID:', actionId);
     }

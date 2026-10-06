@@ -7,6 +7,7 @@ console.log('Testing HDCursor Defaults & Validation Logic...');
 assert.strictEqual(typeof defaults.ACTIONS.toggle_cursor, 'object');
 assert.strictEqual(typeof defaults.ACTIONS.prev_tab, 'object');
 assert.strictEqual(typeof defaults.ACTIONS.next_tab, 'object');
+assert.strictEqual(typeof defaults.ACTIONS.toggle_mute, 'object');
 
 // 2. Test Default Bindings
 assert.deepStrictEqual(defaults.ACTIONS.toggle_cursor.defaultBinding.modifiers, ['Shift']);
@@ -19,6 +20,9 @@ assert.strictEqual(defaults.ACTIONS.prev_tab.defaultBinding.triggerCode, 'Mouse4
 assert.deepStrictEqual(defaults.ACTIONS.next_tab.defaultBinding.modifiers, []);
 assert.strictEqual(defaults.ACTIONS.next_tab.defaultBinding.triggerCode, 'Mouse5');
 
+assert.deepStrictEqual(defaults.ACTIONS.toggle_mute.defaultBinding.modifiers, ['Ctrl']);
+assert.strictEqual(defaults.ACTIONS.toggle_mute.defaultBinding.triggerCode, 'KeyM');
+
 // 3. Test Signature Generation
 const sig1 = defaults.getBindingSignature(defaults.ACTIONS.toggle_cursor.defaultBinding);
 assert.strictEqual(sig1, 'Shift+Mouse4');
@@ -28,6 +32,9 @@ assert.strictEqual(sig2, 'Mouse4');
 
 const sig3 = defaults.getBindingSignature(defaults.ACTIONS.next_tab.defaultBinding);
 assert.strictEqual(sig3, 'Mouse5');
+
+const sig4 = defaults.getBindingSignature(defaults.ACTIONS.toggle_mute.defaultBinding);
+assert.strictEqual(sig4, 'Ctrl+KeyM');
 
 // 4. Test Validation of Defaults (must be valid, no conflicts)
 const validationDefaults = defaults.validateBindings(defaults.DEFAULT_SETTINGS.bindings);

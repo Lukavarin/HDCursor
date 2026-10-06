@@ -26,6 +26,7 @@ const toggleWheelScroll = document.getElementById('toggle-wheel-scroll');
 const badgeToggleCursor = document.getElementById('badge-toggle-cursor');
 const badgePrevTab = document.getElementById('badge-prev-tab');
 const badgeNextTab = document.getElementById('badge-next-tab');
+const badgeToggleMute = document.getElementById('badge-toggle-mute');
 
 const btnOpenOptions = document.getElementById('btn-open-options');
 const btnConfigure = document.getElementById('btn-configure');
@@ -49,6 +50,11 @@ function renderKeybadges(bindings) {
   if (bindings.next_tab && badgeNextTab) {
     badgeNextTab.textContent = bindings.next_tab.displayName ||
       defaults.formatDisplayName(bindings.next_tab.modifiers, bindings.next_tab.triggerCode);
+  }
+
+  if (bindings.toggle_mute && badgeToggleMute) {
+    badgeToggleMute.textContent = bindings.toggle_mute.displayName ||
+      defaults.formatDisplayName(bindings.toggle_mute.modifiers, bindings.toggle_mute.triggerCode);
   }
 }
 
