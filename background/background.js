@@ -172,6 +172,54 @@ async function handleToggleMute(windowId) {
   }
 }
 
+/**
+ * Close active tab in the current window or specified sender tab
+ */
+async function handleCloseTab(senderTab, windowId) {
+  try {
+    let targetTabId = senderTab ? senderTab.id : null;
+    if (!targetTabId) {
+      const queryFilter = windowId ? { windowId, active: true } : { active: true, currentWindow: true };
+      let tabs = await extApi.tabs.query(queryFilter);
+      if (!tabs || tabs.length === 0) {
+        tabs = await extApi.tabs.query({ active: true, currentWindow: true });
+      }
+      if (tabs && tabs.length > 0) {
+        targetTabId = tabs[0].id;
+      }
+    }
+
+    if (targetTabId) {
+      console.log(`[HDCursor BG] Closing tab ID: ${targetTabId}`);
+      await extApi.tabs.remove(targetTabId);
+      return { success: true, tabId: targetTabId };
+    }
+
+    return { success: false, reason: 'No active tab found to close' };
+  } catch (err) {
+    console.error('[HDCursor BG] Tab close failed:', err);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * Restore most recently closed tab or window
+ */
+async function handleRestoreTab() {
+  try {
+    if (!extApi.sessions || !extApi.sessions.restore) {
+      console.warn('[HDCursor BG] sessions API not available');
+      return { success: false, reason: 'Sessions API not available' };
+    }
+    const restoredSession = await extApi.sessions.restore();
+    console.log('[HDCursor BG] Restored session:', restoredSession);
+    return { success: true, session: restoredSession };
+  } catch (err) {
+    console.warn('[HDCursor BG] Restore tab failed or no closed tabs to restore:', err);
+    return { success: false, error: err.message };
+  }
+}
+
 // Runtime message dispatcher
 extApi.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (!message || !message.type) return false;
@@ -201,6 +249,15 @@ extApi.runtime.onMessage.addListener((message, sender, sendResponse) => {
       case 'TOGGLE_MUTE': {
         const winId = sender.tab ? sender.tab.windowId : undefined;
         return await handleToggleMute(winId);
+      }
+
+      case 'CLOSE_TAB': {
+        const winId = sender.tab ? sender.tab.windowId : undefined;
+        return await handleCloseTab(sender.tab, winId);
+      }
+
+      case 'RESTORE_TAB': {
+        return await handleRestoreTab();
       }
 
       case 'OPEN_OPTIONS': {

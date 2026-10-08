@@ -63,16 +63,20 @@ const PRESETS = {
       toggle_cursor: { modifiers: ['Shift'], triggerType: 'mouse', triggerCode: 'Mouse4', button: 3, key: null, displayName: 'Shift + Mouse 4' },
       prev_tab: { modifiers: [], triggerType: 'mouse', triggerCode: 'Mouse4', button: 3, key: null, displayName: 'Mouse 4' },
       next_tab: { modifiers: [], triggerType: 'mouse', triggerCode: 'Mouse5', button: 4, key: null, displayName: 'Mouse 5' },
-      toggle_mute: { modifiers: ['Ctrl'], triggerType: 'keyboard', triggerCode: 'KeyM', button: null, key: 'm', displayName: 'Ctrl + M' }
+      toggle_mute: { modifiers: ['Ctrl'], triggerType: 'keyboard', triggerCode: 'KeyM', button: null, key: 'm', displayName: 'Ctrl + M' },
+      close_tab: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F17', button: null, key: 'F17', displayName: 'F17' },
+      restore_tab: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F18', button: null, key: 'F18', displayName: 'F18' }
     }
   },
   xmbc: {
-    name: 'XMBC (F13–F16)',
+    name: 'XMBC (F13–F18)',
     bindings: {
       toggle_cursor: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F15', button: null, key: 'F15', displayName: 'F15' },
       prev_tab: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F13', button: null, key: 'F13', displayName: 'F13' },
       next_tab: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F14', button: null, key: 'F14', displayName: 'F14' },
-      toggle_mute: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F16', button: null, key: 'F16', displayName: 'F16' }
+      toggle_mute: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F16', button: null, key: 'F16', displayName: 'F16' },
+      close_tab: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F17', button: null, key: 'F17', displayName: 'F17' },
+      restore_tab: { modifiers: [], triggerType: 'keyboard', triggerCode: 'F18', button: null, key: 'F18', displayName: 'F18' }
     }
   },
   alt: {
@@ -81,7 +85,9 @@ const PRESETS = {
       toggle_cursor: { modifiers: ['Alt'], triggerType: 'keyboard', triggerCode: 'KeyC', button: null, key: 'c', displayName: 'Alt + C' },
       prev_tab: { modifiers: ['Alt'], triggerType: 'keyboard', triggerCode: 'KeyZ', button: null, key: 'z', displayName: 'Alt + Z' },
       next_tab: { modifiers: ['Alt'], triggerType: 'keyboard', triggerCode: 'KeyX', button: null, key: 'x', displayName: 'Alt + X' },
-      toggle_mute: { modifiers: ['Alt'], triggerType: 'keyboard', triggerCode: 'KeyM', button: null, key: 'm', displayName: 'Alt + M' }
+      toggle_mute: { modifiers: ['Alt'], triggerType: 'keyboard', triggerCode: 'KeyM', button: null, key: 'm', displayName: 'Alt + M' },
+      close_tab: { modifiers: ['Alt'], triggerType: 'keyboard', triggerCode: 'KeyW', button: null, key: 'w', displayName: 'Alt + W' },
+      restore_tab: { modifiers: ['Alt', 'Shift'], triggerType: 'keyboard', triggerCode: 'KeyT', button: null, key: 't', displayName: 'Alt + Shift + T' }
     }
   }
 };
@@ -427,7 +433,7 @@ function handleRecordedInput(e, type) {
     triggerCode = btnMap.code;
     buttonIndex = e.button;
   } else {
-    triggerCode = e.code;
+    triggerCode = (e.code && e.code !== 'Unidentified') ? e.code : e.key;
     keyName = e.key;
   }
 

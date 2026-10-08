@@ -66,6 +66,34 @@ var HDCursorDefaults = (function () {
         key: 'm',
         displayName: 'Ctrl + M'
       }
+    },
+    close_tab: {
+      id: 'close_tab',
+      title: 'Close Tab',
+      description: 'Close the active tab in the current window.',
+      category: 'Navigation',
+      defaultBinding: {
+        modifiers: [],
+        triggerType: 'keyboard',
+        triggerCode: 'F17',
+        button: null,
+        key: 'F17',
+        displayName: 'F17'
+      }
+    },
+    restore_tab: {
+      id: 'restore_tab',
+      title: 'Restore Closed Tab',
+      description: 'Restore the most recently closed tab in the current window.',
+      category: 'Navigation',
+      defaultBinding: {
+        modifiers: [],
+        triggerType: 'keyboard',
+        triggerCode: 'F18',
+        button: null,
+        key: 'F18',
+        displayName: 'F18'
+      }
     }
   };
 
@@ -85,7 +113,9 @@ var HDCursorDefaults = (function () {
       toggle_cursor: { ...ACTIONS.toggle_cursor.defaultBinding },
       prev_tab: { ...ACTIONS.prev_tab.defaultBinding },
       next_tab: { ...ACTIONS.next_tab.defaultBinding },
-      toggle_mute: { ...ACTIONS.toggle_mute.defaultBinding }
+      toggle_mute: { ...ACTIONS.toggle_mute.defaultBinding },
+      close_tab: { ...ACTIONS.close_tab.defaultBinding },
+      restore_tab: { ...ACTIONS.restore_tab.defaultBinding }
     },
 
     // Schema version for migrations

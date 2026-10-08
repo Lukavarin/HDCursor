@@ -56,6 +56,28 @@ sequenceDiagram
     BG->>TabsAPI: browser.tabs.update(tabs[targetIndex].id, { active: true })
 ```
 
+### 1.3 Tab Lifecycle & Recovery Flow (Close & Restore Tab)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User
+    participant CS as Content Script (Active Tab)
+    participant BG as Background Script
+    participant TabsAPI as browser.tabs / browser.sessions API
+
+    User->>CS: Press F17 (Close Tab) or F18 (Restore Tab)
+    CS->>CS: Capture keydown in capture phase
+    CS->>CS: Call preventDefault() + stopImmediatePropagation()
+    alt Action: Close Tab (F17)
+        CS->>BG: browser.runtime.sendMessage({ type: "CLOSE_TAB" })
+        BG->>TabsAPI: browser.tabs.remove(targetTabId)
+    else Action: Restore Tab (F18)
+        CS->>BG: browser.runtime.sendMessage({ type: "RESTORE_TAB" })
+        BG->>TabsAPI: browser.sessions.restore()
+    end
+```
+
 ---
 
 ## 2. Low-Level Mechanics: Event Interception & Shield Injection
@@ -403,12 +425,15 @@ Provide instant, subtle visual feedback on the active web page when hotkeys are 
   - Zero performance overhead: rendered entirely inside the isolated Shadow DOM.
 
 ### 7.5 Expanded Action Catalog
-The modular dispatcher architecture in `shared/defaults.js` is engineered to support the following upcoming actions with zero breaking changes:
-- `close_tab`: Close active tab (`browser.tabs.remove(activeTab.id)`).
+The modular dispatcher architecture in `shared/defaults.js` supports an extensible action catalog:
+- `toggle_cursor`: **[Implemented]** Neutralize or restore mouse cursor interactions globally across all tabs (`Shift + Mouse 4`).
+- `prev_tab`: **[Implemented]** Navigate to the previous tab (`Mouse 4` / `F13`).
+- `next_tab`: **[Implemented]** Navigate to the next tab (`Mouse 5` / `F14`).
+- `toggle_mute`: **[Implemented]** Toggle audio playback on active tab (`Ctrl + M` / `F16`).
+- `close_tab`: **[Implemented]** Close active tab (`browser.tabs.remove(activeTab.id)`, default `F17`).
+- `restore_tab`: **[Implemented]** Restore recently closed tab (`browser.sessions.restore()`, default `F18`).
 - `duplicate_tab`: Duplicate current tab (`browser.tabs.duplicate(activeTab.id)`).
 - `reload_tab`: Force reload current tab bypass cache (`browser.tabs.reload(activeTab.id, { bypassCache: true })`).
-- `restore_tab`: Reopen last closed tab (`browser.sessions.restore()`).
-- `toggle_mute`: Toggle audio mute on active tab (`browser.tabs.update(activeTab.id, { muted: !tab.mutedInfo.muted })`).
 - `toggle_fullscreen`: Toggle window fullscreen state via `browser.windows.update()`.
 
 ---

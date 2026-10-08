@@ -80,6 +80,30 @@
         button: 4,
         key: null,
         displayName: 'Mouse 5'
+      },
+      toggle_mute: {
+        modifiers: ['Ctrl'],
+        triggerType: 'keyboard',
+        triggerCode: 'KeyM',
+        button: null,
+        key: 'm',
+        displayName: 'Ctrl + M'
+      },
+      close_tab: {
+        modifiers: [],
+        triggerType: 'keyboard',
+        triggerCode: 'F17',
+        button: null,
+        key: 'F17',
+        displayName: 'F17'
+      },
+      restore_tab: {
+        modifiers: [],
+        triggerType: 'keyboard',
+        triggerCode: 'F18',
+        button: null,
+        key: 'F18',
+        displayName: 'F18'
       }
     }
   };
@@ -474,6 +498,34 @@
         break;
       }
 
+      case 'close_tab': {
+        console.log('[HDCursor] Sending CLOSE_TAB to background...');
+        if (extApi && extApi.runtime) {
+          extApi.runtime.sendMessage({
+            type: 'CLOSE_TAB'
+          }).then(res => {
+            console.log('[HDCursor] Background response for CLOSE_TAB:', res);
+          }).catch(err => {
+            console.debug('[HDCursor] Tab close message completed/ended:', err);
+          });
+        }
+        break;
+      }
+
+      case 'restore_tab': {
+        console.log('[HDCursor] Sending RESTORE_TAB to background...');
+        if (extApi && extApi.runtime) {
+          extApi.runtime.sendMessage({
+            type: 'RESTORE_TAB'
+          }).then(res => {
+            console.log('[HDCursor] Background response for RESTORE_TAB:', res);
+          }).catch(err => {
+            console.error('[HDCursor] Tab restore message error:', err);
+          });
+        }
+        break;
+      }
+
       default:
         console.warn('[HDCursor] Unhandled action ID:', actionId);
     }
@@ -545,9 +597,9 @@
     }
 
     const mods = getActiveModifiers(e);
-    const triggerCode = e.code;
+    const triggerCode = (e.code && e.code !== 'Unidentified') ? e.code : e.key;
 
-    if (mods.length > 0 || triggerCode.startsWith('F') || triggerCode === 'Escape') {
+    if (mods.length > 0 || (triggerCode && triggerCode.startsWith('F')) || triggerCode === 'Escape') {
       console.log(`%c[HDCursor KEY]%c code: ${triggerCode} | key: ${e.key} | mods: [${mods.join(', ')}]`,
         'color: #99F4D1; font-weight: bold;', 'color: #F4F4F5;');
     }

@@ -15,7 +15,8 @@
   },
   "permissions": [
     "storage",
-    "tabs"
+    "tabs",
+    "sessions"
   ],
   "background": {
     "scripts": [

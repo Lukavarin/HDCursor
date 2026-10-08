@@ -27,6 +27,8 @@ const badgeToggleCursor = document.getElementById('badge-toggle-cursor');
 const badgePrevTab = document.getElementById('badge-prev-tab');
 const badgeNextTab = document.getElementById('badge-next-tab');
 const badgeToggleMute = document.getElementById('badge-toggle-mute');
+const badgeCloseTab = document.getElementById('badge-close-tab');
+const badgeRestoreTab = document.getElementById('badge-restore-tab');
 
 const btnOpenOptions = document.getElementById('btn-open-options');
 const btnConfigure = document.getElementById('btn-configure');
@@ -55,6 +57,16 @@ function renderKeybadges(bindings) {
   if (bindings.toggle_mute && badgeToggleMute) {
     badgeToggleMute.textContent = bindings.toggle_mute.displayName ||
       defaults.formatDisplayName(bindings.toggle_mute.modifiers, bindings.toggle_mute.triggerCode);
+  }
+
+  if (bindings.close_tab && badgeCloseTab) {
+    badgeCloseTab.textContent = bindings.close_tab.displayName ||
+      defaults.formatDisplayName(bindings.close_tab.modifiers, bindings.close_tab.triggerCode);
+  }
+
+  if (bindings.restore_tab && badgeRestoreTab) {
+    badgeRestoreTab.textContent = bindings.restore_tab.displayName ||
+      defaults.formatDisplayName(bindings.restore_tab.modifiers, bindings.restore_tab.triggerCode);
   }
 }
 
